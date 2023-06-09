@@ -4,20 +4,37 @@ const User = require("../models/User");
 //addusers
 const AddUsers = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
-      return res.status(400).send({ message: "Ma'lumotlarni tuliq kriting!" });
-    }
+    const {
+      name,
+      email,
+      password,
+      age,
+      jinsi,
+      wife,
+      isMarried,
+      phone,
+      salary,
+    } = req.body;
+    // if (!name || !email || !password) {
+    //   return res.status(400).send({ message: "Ma'lumotlarni tuliq kriting!" });
+    // }
     const user = await User.findOne({ email });
 
-    if (user) {
-      return res.status(400).send({ message: "Bunday email mavjud" });
-    }
+    // if (user) {
+    //   return res.status(400).send({ message: "Bunday email mavjud" });
+    // }
     const newUser = await User({
       name: name,
       email: email,
       password: password,
+      age,
+      jinsi,
+      wife,
+      isMarried,
+      phone,
+      salary,
     });
+    // await newUser.validate();
     await newUser.save();
     res.status(200).send({ message: "foydaluvchi qushildi" });
   } catch (error) {
@@ -51,6 +68,19 @@ const getUsersById = async (req, res) => {
   }
 };
 
+const getUsersByName = async (req, res) => {
+  try {
+    // const user = await User.findByName(req.params.name);
+    const user = await User.find().byName(req.params.name);
+
+    if (!user) {
+      return res.status(400).send({ message: "Foydalanuvchilar topilmadi" });
+    }
+    res.json({ user });
+  } catch (error) {
+    errorHandler(res, error);
+  }
+};
 // UpdateUsers
 const UpdateUsers = async (req, res) => {
   try {
@@ -108,6 +138,7 @@ module.exports = {
   AddUsers,
   GetUsers,
   getUsersById,
+  getUsersByName,
   UpdateUsers,
   DeleteUserById,
   LoginUsers,
