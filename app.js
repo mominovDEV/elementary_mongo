@@ -12,7 +12,7 @@ app.use(mainRouter);
 
 async function start() {
   try {
-    await mongoose.connect(config.get("dbURI"));
+    await mongoose.connect(config.get("ATLAS_URI"));
 
     app.listen(PORT, () => {
       console.log(`Server ${PORT}-da ishga tushdi`);

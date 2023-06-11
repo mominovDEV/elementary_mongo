@@ -1,11 +1,11 @@
 const { Router } = require("express");
 
-const userRouter = require("./user.routes");
-const postRouter = require("./post.routes");
+const departmentRouter = require("./department.routes");
+const workerRouter = require("./worker.routes");
 
 const router = Router();
 
-router.use("/api/user", userRouter);
-router.use("/api/post", postRouter);
+router.use("/api/department", departmentRouter);
+router.use("/api/worker", workerRouter);
 
 module.exports = router;

@@ -1,4 +1,4 @@
 {
   "port": 3000,
-  "dbURI": "mongodb://127.0.0.1:27017/mongo_test"
+  "ATLAS_URI": "mongodb+srv://mardonmominov35:mardonmominov@cluster0.rghuqyi.mongodb.net/employee?retryWrites=true&w=majority"
 }
